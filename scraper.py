@@ -20,7 +20,6 @@ HEADERS = {
 
 
 def fetch_page(url):
-    """Ambil satu halaman dengan retry + timeout. Return response, atau None kalau gagal total."""
     for attempt in range(1, MAX_RETRIES + 1):
         try:
             response = requests.get(url, headers=HEADERS, timeout=TIMEOUT)
@@ -40,7 +39,6 @@ def fetch_page(url):
 
 
 def save_partial(all_data):
-    """Simpan progres saat ini ke CSV, dipanggil secara berkala & saat interrupt."""
     if not all_data:
         return
     df = pd.DataFrame(all_data)
